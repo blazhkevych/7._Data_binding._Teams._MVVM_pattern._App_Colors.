@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:task"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Name="GridMain" Margin="5">
@@ -76,13 +75,14 @@
         <Button Content="Add" HorizontalAlignment="Left" Margin="10,5,5,5" VerticalAlignment="Center" Width="125"
                 Grid.Row="1" />
         <Grid Margin="10" Grid.Row="2">
-            <ListBox ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColorModel}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColorModel}"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding myColor}" />
                             <Rectangle Width="20" Height="20" Fill="{Binding myColor}" />
-                            <Button Content="Delete"  />
+                            <Button Content="Delete" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
