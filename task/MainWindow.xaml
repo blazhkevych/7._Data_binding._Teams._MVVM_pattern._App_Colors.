@@ -75,13 +75,12 @@
         <Button Content="Add" HorizontalAlignment="Left" Margin="10,5,5,5" VerticalAlignment="Center" Width="125"
                 Grid.Row="1" />
         <Grid Margin="10" Grid.Row="2">
-            <ListBox ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColorModel}"
-                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox ItemsSource="{Binding ColorsList}" IsSynchronizedWithCurrentItem="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding myColor}" />
-                            <Rectangle Width="20" Height="20" Fill="{Binding myColor}" />
+                            <TextBlock Text="{Binding ColorCode}" />
+                            <Rectangle Width="20" Height="20" Fill="{Binding ColorCode}" />
                             <Button Content="Delete" />
                         </StackPanel>
                     </DataTemplate>

@@ -1,7 +1,9 @@
 ﻿namespace task.Model;
 
+// Модель цвета.
 public class ColorModel
 {
+    // Конструктор.
     public ColorModel(byte alpha, byte red, byte green, byte blue)
     {
         Alpha = alpha;
@@ -10,6 +12,7 @@ public class ColorModel
         Blue = blue;
     }
 
+    // Свойства.
     public byte Alpha { get; set; }
 
     public byte Red { get; set; }
@@ -18,16 +21,12 @@ public class ColorModel
 
     public byte Blue { get; set; }
 
-    public override string ToString()
-    {
-        return $"{ToHex()}";
-        //return $"ARGB: ({Alpha}, {Red}, {Green}, {Blue})";
-    }
+    // Итоговый цвет.
+    public string ColorCode => GetColorCode();
 
-    // Метод конвертирует цвет из формата ARGB в формат "FF48BD00" и возвращает строку.
-    private string ToHex()
+    // Метод, который возвращает строку с кодом цвета.
+    private string GetColorCode()
     {
-        var hex = Alpha.ToString("X2") + Red.ToString("X2") + Green.ToString("X2") + Blue.ToString("X2");
-        return hex;
+        return $"#{Alpha:X2}{Red:X2}{Green:X2}{Blue:X2}";
     }
 }
