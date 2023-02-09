@@ -1,28 +1,41 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Documents;
 using task.Model;
+using task.ViewModel;
 
 namespace task;
 
 public partial class App : Application
 {
-    #region Добавление цветов в список, для тестирования.
-    private void OnStartup()
+    private void OnStartup(object sender, StartupEventArgs e)
     {
-        List<ColorModel> colors = new List<ColorModel>
+        #region Добавление цветов в список, для тестирования.
+
+        var colors = new List<ColorModel>
         {
-            new ColorModel(255, 0, 0, 0),
-            new ColorModel(0, 255, 0, 0),
-            new ColorModel(0, 0, 255, 0),
-            new ColorModel(0, 0, 0, 255),
-            new ColorModel(255, 255, 255, 255),
-            new ColorModel(0, 0, 0, 0),
-            new ColorModel(255, 255, 255, 0),
-            new ColorModel(255, 255, 0, 255),
-            new ColorModel(255, 0, 255, 255),
-            new ColorModel(0, 255, 255, 255)
+            new(255, 0, 0, 0),
+            new(0, 255, 0, 0),
+            new(0, 0, 255, 0),
+            new(0, 0, 0, 255),
+            new(255, 255, 255, 255),
+            new(0, 0, 0, 0),
+            new(255, 255, 255, 0),
+            new(255, 255, 0, 255),
+            new(255, 0, 255, 255),
+            new(0, 255, 255, 255)
         };
+
+        #endregion
+
+        // Создали главное окно. (главная вьюшка)
+        var mainWindow = new MainWindow();
+        // Создали обьект главной ViewModel. И все цвета созданные выше передаем в конструктор.
+        var mainViewModel = new MainViewModel(colors);
+        // Устанавливаем DataContext главного окна на главную ViewModel. Чтобы наша вьюшка знала про вьюмодель.
+        // Это же мы делали в XAML, в другом примере. В Window.Resources создавали ViewModel.
+        // Теперь наша вьюшка знает про вьюмодель.
+        mainWindow.DataContext = mainViewModel;
+        // Показываем главное окно.
+        mainWindow.Show();
     }
-    #endregion
 }
