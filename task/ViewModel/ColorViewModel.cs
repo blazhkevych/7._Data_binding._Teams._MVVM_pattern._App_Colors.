@@ -6,12 +6,8 @@ namespace task.ViewModel;
 // ViewModel цвета.
 public class ColorViewModel : ViewModelBase
 {
-    // Команды. 
-
-    private DelegateCommand _changeColorCommand;
-
     // Модель цвета.
-    private readonly ColorModel _colorModel;
+    private ColorModel _colorModel;
 
     // Конструктор.
     public ColorViewModel(ColorModel colorModel)
@@ -63,6 +59,9 @@ public class ColorViewModel : ViewModelBase
             OnPropertyChanged(nameof(Blue));
         }
     }
+
+    // Команды. 
+    private DelegateCommand _changeColorCommand;
 
     // Итоговый цвет.
     public string ColorCode => _colorModel.ColorCode;
