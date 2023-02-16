@@ -75,14 +75,19 @@
         <Button Content="Add" HorizontalAlignment="Left" Margin="10,5,5,5" VerticalAlignment="Center" Width="125"
                 Grid.Row="1" />
         <Grid Margin="10" Grid.Row="2">
-            <ListBox ItemsSource="{Binding ColorsList}" IsSynchronizedWithCurrentItem="True">
+            <ListBox ItemsSource="{Binding ColorsList}" IsSynchronizedWithCurrentItem="True" HorizontalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding ColorCode}" />
-                            <Rectangle Width="20" Height="20" Fill="{Binding ColorCode}" />
-                            <Button Content="Delete" />
-                        </StackPanel>
+                            <Rectangle Grid.Column="1" Fill="{Binding ColorCode}" />
+                            <Button Grid.Column="2" Content="Delete" />
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
