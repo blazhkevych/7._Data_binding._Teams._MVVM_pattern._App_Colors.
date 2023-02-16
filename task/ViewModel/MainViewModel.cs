@@ -8,6 +8,12 @@ namespace task.ViewModel;
 // ViewModel главного окна.
 public class MainViewModel : ViewModelBase
 {
+    // 4 булевских свойсвтва для чекбоксов.
+    private bool _isAlphaChecked;
+    private bool _isRedChecked;
+    private bool _isGreenChecked;
+    private bool _isBlueChecked;
+
     // Конструктор.
     public MainViewModel(List<ColorModel> colors)
     {
