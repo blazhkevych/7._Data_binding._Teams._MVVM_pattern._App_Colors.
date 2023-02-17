@@ -60,9 +60,6 @@ public class ColorViewModel : ViewModelBase
         }
     }
 
-    // Команды. 
-    private DelegateCommand _changeColorCommand;
-
     // Итоговый цвет.
     public string ColorCode => _colorModel.ColorCode;
 
@@ -71,16 +68,4 @@ public class ColorViewModel : ViewModelBase
     {
         return _colorModel.ToString();
     }
-
-    //public ICommand ChangeColorCommand
-    //{
-    //    get
-    //    {
-    //        if (_changeColorCommand == null)
-    //        {
-    //            _changeColorCommand = new DelegateCommand();
-    //        }
-    //        return _changeColorCommand;
-    //    }
-    //}
 }

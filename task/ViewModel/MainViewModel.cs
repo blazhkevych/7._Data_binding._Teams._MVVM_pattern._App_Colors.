@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
+using task.Commands;
 using task.Model;
 
 namespace task.ViewModel;
@@ -24,4 +26,33 @@ public class MainViewModel : ViewModelBase
 
     // Хранит обьекты маленькой вспомагательной вьюмодели, которая оборачивает модель цвета(ColorModel).
     public ObservableCollection<ColorViewModel> ColorsList { get; set; }
+
+    // Команды. 
+    private DelegateCommand _addColorCommand;
+
+    public ICommand AddColorCommand
+    {
+        get
+        {
+            if (_addColorCommand == null)
+            {
+                _addColorCommand = new DelegateCommand(AddColor, CanAddColor);
+            }
+            return _addColorCommand;
+        }
+    }
+
+    private void AddColor(object o)
+    {
+
+    }
+
+    private bool CanAddColor(object o)
+    {
+        // Если такого цвета в листбоксе нету, то можно добавлять.
+        return true;
+        // Если такой цвет есть в листбоксе, то нельзя добавлять.
+        return false;
+
+    }
 }
