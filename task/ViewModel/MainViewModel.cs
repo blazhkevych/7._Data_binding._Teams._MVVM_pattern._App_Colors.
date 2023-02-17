@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using task.Commands;
 using task.Model;
@@ -44,6 +45,15 @@ public class MainViewModel : ViewModelBase
 
     private void AddColor(object o)
     {
+       // Получаем текущие значения из слайдеров.
+       byte alpha = (byte)Application.Current.MainWindow.FindResource("Alpha");
+
+
+       
+
+        // Создаем новую модель цвета.
+        //ColorModel colorModel = new ColorModel();
+
 
     }
 

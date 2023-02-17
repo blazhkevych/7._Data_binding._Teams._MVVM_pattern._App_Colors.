@@ -62,13 +62,13 @@
                            Text="{Binding Source={x:Reference Name=Slider4}, Path=Value}"
                            HorizontalAlignment="Center" Margin="5"
                            VerticalAlignment="Center" />
-                <Slider Name="Slider1" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+                <Slider x:Name="Slider1" Value="{Binding Alpha, Mode=TwoWay}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
-                <Slider Name="Slider2" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+                <Slider x:Name="Slider2" Value="{Binding Red, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
-                <Slider Name="Slider3" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+                <Slider x:Name="Slider3" Value="{Binding Green, Mode=TwoWay}" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
-                <Slider Name="Slider4" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+                <Slider x:Name="Slider4" Value="{Binding Blue, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
             </Grid>
         </Grid>
