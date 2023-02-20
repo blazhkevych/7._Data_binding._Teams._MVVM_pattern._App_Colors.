@@ -1,21 +1,20 @@
-﻿using task.Commands;
-using task.Model;
+﻿using task.Model;
 
 namespace task.ViewModel;
 
 // ViewModel цвета.
-public class ColorViewModel : ViewModelBase 
+public class ColorViewModel : ViewModelBase
 {
-    private Color color;
+    private readonly Color color;
 
     public ColorViewModel(Color color_)
     {
-        this.color = color_;
+        color = color_;
     }
 
     public string Name
     {
-        get { return color.Name; }
+        get => color.Name;
         set
         {
             color.Name = value;
