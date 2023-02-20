@@ -2,13 +2,12 @@
 
 namespace task;
 
-/// <summary>
-///     Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     public MainWindow()
     {
         InitializeComponent();
+        // Позиция окна при старте программы по центру.
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 }

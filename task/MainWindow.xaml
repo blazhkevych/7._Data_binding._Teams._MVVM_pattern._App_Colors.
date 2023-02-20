@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:task.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Name="GridMain" Margin="5">
+    <Window.Resources>
+        <viewModel:MainViewModel x:Key="ViewModel"/>
+    </Window.Resources>
+    <Grid Name="GridMain" Margin="5" DataContext="{StaticResource ViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Name="CheckBoxsColorscolorValsSliders" Height="Auto" />
             <RowDefinition Name="Button" Height="Auto" />
@@ -16,7 +20,11 @@
                 <ColumnDefinition Width="13*" />
                 <ColumnDefinition Name="Rectangle1" Width="*" />
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="1" Stroke="Black" Margin="5,5,10,5" />
+            <Rectangle Grid.Column="1" Stroke="Black" Margin="5,5,10,5">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
             <Grid Row="0" Grid.Column="0" Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Name="CheckBoxColorColorValSlider_1" Height="Auto" />
@@ -30,14 +38,16 @@
                     <ColumnDefinition Name="ColorValues" Width="Auto" />
                     <ColumnDefinition Name="Sliders" Width="*" />
                 </Grid.ColumnDefinitions>
+
                 <CheckBox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="5"
-                          VerticalAlignment="Center" Height="15" Width="15" />
+                          VerticalAlignment="Center" Height="15" Width="15" x:Name="checkAlpha" IsChecked="{Binding CheckAlpha}"/>
                 <CheckBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="5"
-                          VerticalAlignment="Center" Height="15" Width="15" />
+                          VerticalAlignment="Center" Height="15" Width="15" x:Name="checkRed" IsChecked="{Binding CheckRed}"/>
                 <CheckBox Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="5"
-                          VerticalAlignment="Center" Height="15" Width="15" />
+                          VerticalAlignment="Center" Height="15" Width="15" x:Name="checkGreen" IsChecked="{Binding CheckGreen}"/>
                 <CheckBox Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Margin="5"
-                          VerticalAlignment="Center" Height="15" Width="15" />
+                          VerticalAlignment="Center" Height="15" Width="15" x:Name="checkBlue" IsChecked="{Binding CheckBlue}"/>
+
                 <TextBlock Grid.Row="0" Grid.Column="1" Text="Alpha:" HorizontalAlignment="Right" Margin="5"
                            VerticalAlignment="Center" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="Red:" HorizontalAlignment="Right" Margin="5"
@@ -46,36 +56,38 @@
                            VerticalAlignment="Center" />
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="Blue:" HorizontalAlignment="Right" Margin="5"
                            VerticalAlignment="Center" />
-                <TextBlock Name="TextBlockSliderValue1" Grid.Row="0" Grid.Column="2"
-                           Text="{Binding Source={x:Reference Name=Slider1}, Path=Value}" HorizontalAlignment="Center"
+
+                <TextBlock Name="TextBlockSliderValue1" Grid.Row="0" Grid.Column="2" MinWidth="20"
+                           Text="{Binding Source={x:Reference Name=SliderAlpha}, Path=Value}" HorizontalAlignment="Center"
                            Margin="5"
                            VerticalAlignment="Center" />
-                <TextBlock Name="TextBlockSliderValue2" Grid.Row="1" Grid.Column="2"
-                           Text="{Binding Source={x:Reference Name=Slider2}, Path=Value}"
+                <TextBlock Name="TextBlockSliderValue2" Grid.Row="1" Grid.Column="2" MinWidth="20"
+                           Text="{Binding Source={x:Reference Name=SliderRed}, Path=Value}"
                            HorizontalAlignment="Center" Margin="5"
                            VerticalAlignment="Center" />
-                <TextBlock Name="TextBlockSliderValue3" Grid.Row="2" Grid.Column="2"
-                           Text="{Binding Source={x:Reference Name=Slider3}, Path=Value}"
+                <TextBlock Name="TextBlockSliderValue3" Grid.Row="2" Grid.Column="2" MinWidth="20"
+                           Text="{Binding Source={x:Reference Name=SliderGreen}, Path=Value}"
                            HorizontalAlignment="Center" Margin="5"
                            VerticalAlignment="Center" />
-                <TextBlock Name="TextBlockSliderValue4" Grid.Row="3" Grid.Column="2"
-                           Text="{Binding Source={x:Reference Name=Slider4}, Path=Value}"
+                <TextBlock Name="TextBlockSliderValue4" Grid.Row="3" Grid.Column="2" MinWidth="20"
+                           Text="{Binding Source={x:Reference Name=SliderBlue}, Path=Value}"
                            HorizontalAlignment="Center" Margin="5"
                            VerticalAlignment="Center" />
-                <Slider x:Name="Slider1" Value="{Binding Alpha, Mode=TwoWay}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+
+                <Slider x:Name="SliderAlpha" IsEnabled="{Binding ElementName=checkAlpha, Path=IsChecked}" Value="{Binding ColorAlpha}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
-                <Slider x:Name="Slider2" Value="{Binding Red, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+                <Slider x:Name="SliderRed" IsEnabled="{Binding ElementName=checkRed, Path=IsChecked}" Value="{Binding ColorRed}" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
-                <Slider x:Name="Slider3" Value="{Binding Green, Mode=TwoWay}" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+                <Slider x:Name="SliderGreen" IsEnabled="{Binding ElementName=checkGreen, Path=IsChecked}" Value="{Binding ColorGreen}" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
-                <Slider x:Name="Slider4" Value="{Binding Blue, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
+                <Slider x:Name="SliderBlue" IsEnabled="{Binding ElementName=checkBlue, Path=IsChecked}" Value="{Binding ColorBlue}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5"
                         VerticalAlignment="Center" Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" />
             </Grid>
         </Grid>
         <Button Content="Add" HorizontalAlignment="Left" Margin="10,5,5,5" VerticalAlignment="Center" Width="125"
-                Grid.Row="1" />
+                Grid.Row="1" Command="{Binding AddCommand}"/>
         <Grid Margin="10" Grid.Row="2">
-            <ListBox ItemsSource="{Binding ColorsList}" IsSynchronizedWithCurrentItem="True" HorizontalContentAlignment="Stretch">
+            <ListBox ItemsSource="{Binding ColorList}" SelectedIndex="{Binding  Index_selected_listbox}" IsSynchronizedWithCurrentItem="True" HorizontalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid >
@@ -84,9 +96,10 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding ColorCode}" />
-                            <Rectangle Grid.Column="1" Fill="{Binding ColorCode}" />
-                            <Button Grid.Column="2" Content="Delete" />
+                            <TextBlock Text="{Binding Name}" MinWidth="60"/>
+                            <Rectangle Grid.Column="1" Fill="{Binding Name}"  Margin="5,0,5,0"/>
+                            <Button Grid.Column="2" Content="Delete" Command ="{Binding Source={StaticResource ViewModel}, Path = DeleteCommand}"
+                                    MinWidth="70"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -4,68 +4,22 @@ using task.Model;
 namespace task.ViewModel;
 
 // ViewModel цвета.
-public class ColorViewModel : ViewModelBase
+public class ColorViewModel : ViewModelBase 
 {
-    // Модель цвета.
-    private ColorModel _colorModel;
+    private Color color;
 
-    // Конструктор.
-    public ColorViewModel(ColorModel colorModel)
+    public ColorViewModel(Color color_)
     {
-        _colorModel = colorModel;
+        this.color = color_;
     }
 
-    // Свойства, которые оборачивают свойства модели цвета.
-    public byte Alpha
+    public string Name
     {
-        // Возвращаем значение свойства модели цвета.
-        get => _colorModel.Alpha;
-        // Устанавливаем значение свойства модели цвета.
+        get { return color.Name; }
         set
         {
-            // При изменении свойства вызывается событие PropertyChanged.
-            _colorModel.Alpha = value;
-            // Вызываем событие PropertyChanged.
-            OnPropertyChanged(nameof(Alpha));
+            color.Name = value;
+            OnPropertyChanged(nameof(Name));
         }
-    }
-
-    public byte Red
-    {
-        get => _colorModel.Red;
-        set
-        {
-            _colorModel.Red = value;
-            OnPropertyChanged(nameof(Red));
-        }
-    }
-
-    public byte Green
-    {
-        get => _colorModel.Green;
-        set
-        {
-            _colorModel.Green = value;
-            OnPropertyChanged(nameof(Green));
-        }
-    }
-
-    public byte Blue
-    {
-        get => _colorModel.Blue;
-        set
-        {
-            _colorModel.Blue = value;
-            OnPropertyChanged(nameof(Blue));
-        }
-    }
-
-    // Итоговый цвет.
-    public string ColorCode => _colorModel.ColorCode;
-
-    // Метод, который возвращает строку с цветом.
-    public override string ToString()
-    {
-        return _colorModel.ToString();
     }
 }
